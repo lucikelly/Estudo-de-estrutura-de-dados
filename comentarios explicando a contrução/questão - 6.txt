@@ -1,0 +1,99 @@
+//exemplo usando o for
+
+#include <iostream>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+// Função para inverter os elementos de uma fila
+void inverterFila(queue<int>& f) {
+    stack<int> pilhaAuxiliar;
+
+    // Transferir elementos da fila para a pilha
+    while (!f.empty()) {
+        pilhaAuxiliar.push(f.front());
+        f.pop();
+    }
+
+    // Transferir elementos de volta para a fila, invertendo a ordem
+    for (; !pilhaAuxiliar.empty(); f.push(pilhaAuxiliar.top()), 
+            pilhaAuxiliar.pop());
+}
+
+int main() {
+    queue<int> elemento;
+
+    elemento.push(1);
+    elemento.push(2);
+    elemento.push(3);
+    elemento.push(4);
+
+    cout << "Tamanho da fila: " << elemento.size() << "\n";
+    cout << "Primeiro da fila: " << elemento.front() << "\n";
+    cout << "Último da fila: " << elemento.back() << "\n";
+
+    // Invertendo a fila
+    inverterFila(elemento);
+
+    // Exibindo os elementos da fila após a inversão
+    cout << "Elementos da fila após a inversão:\n";
+    for (; !elemento.empty(); cout << elemento.front() << "\n",
+         elemento.pop());
+
+    return 0;
+}
+
+
+//exemplo usando o while
+#include <iostream>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+// Função para inverter os elementos de uma fila
+void inverterFila(queue<int>& f) {
+    stack<int> pilhaAuxiliar;
+
+    // Transferir elementos da fila para a pilha
+    while (!f.empty()) {
+        pilhaAuxiliar.push(f.front());
+        f.pop();
+    }
+
+    // Transferir elementos de volta para a fila, invertendo a ordem
+    while (!pilhaAuxiliar.empty()) {
+        f.push(pilhaAuxiliar.top());
+        pilhaAuxiliar.pop();
+    }
+}
+
+int main() {
+    queue<int> elemento;
+
+    elemento.push(1);
+    elemento.push(2);
+    elemento.push(3);
+    elemento.push(4);
+
+    cout << "Fila antes da inversão:\n";
+    queue<int> copiaElemento = elemento; // Cópia da fila original
+    while (!copiaElemento.empty()) {
+        cout << copiaElemento.front() << " ";
+        copiaElemento.pop();
+    }
+    cout << "\n";
+
+    // Invertendo a fila
+    inverterFila(elemento);
+
+    // Exibindo os elementos da fila após a inversão
+    cout << "Elementos da fila após a inversão:\n";
+    while (!elemento.empty()) {
+        cout << elemento.front() << " ";
+        elemento.pop();
+    }
+
+    return 0;
+}

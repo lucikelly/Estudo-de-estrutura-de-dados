@@ -1,0 +1,124 @@
+#include <iostream>
+
+using namespace std;
+
+struct No {
+  int dado;
+  No* prox;
+  No* ant;
+};
+
+class Lista {
+ public:
+  Lista() {
+    inicio = NULL;
+    fim = NULL;
+  }
+
+  void inserirInicio(int dado) {
+    No* novo = new No();
+    novo->dado = dado;
+    novo->prox = inicio;
+    novo->ant = NULL;
+
+    if (inicio != NULL) {
+      inicio->ant = novo;
+    }
+
+    inicio = novo;
+
+    if (fim == NULL) {
+      fim = novo;
+    }
+  }
+
+  void inserirFim(int dado) {
+    No* novo = new No();
+    novo->dado = dado;
+    novo->prox = NULL;
+    novo->ant = fim;
+
+    if (fim != NULL) {
+      fim->prox = novo;
+    }
+
+    fim = novo;
+
+    if (inicio == NULL) {
+      inicio = novo;
+    }
+  }
+
+  void removerInicio() {
+    if (inicio == NULL) {
+      return;
+    }
+
+    No* remover = inicio;
+    inicio = remover->prox;
+
+    if (inicio != NULL) {
+      inicio->ant = NULL;
+    }
+
+    if (inicio == NULL) {
+      fim = NULL;
+    }
+
+    delete remover;
+  }
+
+  void removerFim() {
+    if (fim == NULL) {
+      return;
+    }
+
+    No* remover = fim;
+    fim = remover->ant;
+
+    if (fim != NULL) {
+      fim->prox = NULL;
+    }
+
+    if (fim == NULL) {
+      inicio = NULL;
+    }
+
+    delete remover;
+  }
+
+  void imprimir() {
+    No* atual = inicio;
+
+    while (atual != NULL) {
+      cout << atual->dado << " ";
+      atual = atual->prox;
+    }
+
+    cout << endl;
+  }
+
+ private:
+  No* inicio;
+  No* fim;
+};
+
+int main() {
+  Lista lista;
+
+  lista.inserirInicio(10);
+  lista.inserirInicio(20);
+  lista.inserirFim(30);
+  lista.inserirFim(40);
+
+  cout << "Lista inicial:" << endl;
+  lista.imprimir();
+
+  lista.removerInicio();
+  lista.removerFim();
+
+  cout << "Lista após remover o início e o fim:" << endl;
+  lista.imprimir();
+
+  return 0;
+}

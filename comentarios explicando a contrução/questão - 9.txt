@@ -1,0 +1,94 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+class PilhaMin {
+public:
+    PilhaMin() {}
+
+    void empilhar(int dado) {
+        pilha.push(dado);
+
+        if (menor == -1 || dado < menor) {
+            menor = dado;
+        }
+    }
+
+    void desempilhar() {
+        if (pilha.empty()) {
+            cout << "A pilha está vazia.\n";
+            return;
+        }
+
+        int dado = pilha.top();
+        pilha.pop();
+
+        if (dado == menor) {
+            // Se o elemento removido era o menor, atualiza o menor elemento na pilha
+            if (!pilha.empty()) {
+                menor = pilha.top();
+                stack<int> tempStack;
+                while (!pilha.empty()) {
+                    tempStack.push(pilha.top());
+                    pilha.pop();
+                }
+                while (!tempStack.empty()) {
+                    empilhar(tempStack.top());
+                    tempStack.pop();
+                }
+            } else {
+                menor = -1; // Se a pilha está vazia, redefine o menor para o valor sentinela
+            }
+        }
+    }
+
+    int obterMenorElementoEmpilhado() {
+        return menor;
+    }
+
+private:
+    stack<int> pilha;
+    int menor = -1; // Usando -1 como valor sentinela
+};
+
+int main() {
+    PilhaMin pilha;
+
+    int opcao, elemento;
+
+    do {
+        cout << "1. Empilhar\n";
+        cout << "2. Desempilhar\n";
+        cout << "3. Menor elemento empilhado\n";
+        cout << "0. Sair\n";
+        cout << "Escolha uma opcao: ";
+        cin >> opcao;
+
+        switch (opcao) {
+        case 1:
+            cout << "Digite o elemento a ser empilhado: ";
+            cin >> elemento;
+            pilha.empilhar(elemento);
+            break;
+
+        case 2:
+            pilha.desempilhar();
+            break;
+
+        case 3:
+            cout << "Menor elemento empilhado: " << pilha.obterMenorElementoEmpilhado() << endl;
+            break;
+
+        case 0:
+            cout << "Saindo...\n";
+            break;
+
+        default:
+            cout << "Opcao invalida. Tente novamente.\n";
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}

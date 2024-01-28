@@ -1,0 +1,42 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+bool verificarPalindromo(const string& str) {
+    stack<char> pilha;
+
+    // Empilha cada caractere na pilha
+    for (char caractere : str) {
+        pilha.push(caractere);
+    }
+
+    // Desempilha os caracteres da pilha e compara com a string original
+    for (char caractere : str) {
+        if (caractere != pilha.top()) {
+            return false;
+        }
+        pilha.pop();
+    }
+
+    return true;
+}
+
+int main() {
+    string str;
+    int resultado;
+
+    cout << "\nDigite uma palavra: ";
+    cin >> str;
+
+    resultado = verificarPalindromo(str);
+
+    if (resultado == 1) {
+        cout << str << " é um Palíndromo\n";
+    } else {
+        cout << str << " não é um Palíndromo\n";
+    }
+
+    return 0;
+}

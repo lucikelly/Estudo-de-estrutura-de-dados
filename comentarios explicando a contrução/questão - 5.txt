@@ -1,0 +1,38 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Tarefa {
+    string nome;
+    int prioridade;
+    
+    // Construtor para facilitar a criação de tarefas
+    Tarefa(const string n, int p) : nome(n), prioridade(p) {}
+
+    // Operador de comparação para a fila de prioridade
+    bool operator<(const Tarefa outra) const {
+        // Quanto maior a prioridade, menor o valor, para inverter a ordenação
+        return prioridade > outra.prioridade;
+    }
+};
+
+int main(){
+    priority_queue<Tarefa> filaDePrioridade;
+
+    // Adição de tarefas à fila de prioridade
+    filaDePrioridade.push(Tarefa("Acordar", 1));
+    filaDePrioridade.push(Tarefa("Caminhar ", 4));
+    filaDePrioridade.push(Tarefa("Estudar", 2));
+    filaDePrioridade.push(Tarefa("Comer", 3));
+
+    // Exibição das tarefas com base na prioridade
+    cout << "Tarefas em ordem de prioridade:\n";
+    while (!filaDePrioridade.empty()) {
+        Tarefa tarefa = filaDePrioridade.top();
+        cout << "Nome: " << tarefa.nome << ", Prioridade: " << tarefa.prioridade << "\n";
+        filaDePrioridade.pop();
+    
+    }
+    
+    return 0;
+}

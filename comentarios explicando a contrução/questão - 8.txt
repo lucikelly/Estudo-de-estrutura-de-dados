@@ -1,0 +1,103 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+// Função para copiar uma pilha
+stack<int> copiarPilha(const stack<int>& original) {
+    stack<int> copia = original;
+    return copia;
+}
+
+int main() {
+    stack<int> pilhaOriginal;
+    int num;
+
+    // Insira alguns números na pilha original
+    cout << "Digite números inteiros para a pilha (digite 0 para encerrar):\n";
+    do {
+        cin >> num;
+        if (num != 0) {
+            pilhaOriginal.push(num);
+        }
+    } while (num != 0);
+
+    // Chama a função para copiar a pilha
+    stack<int> pilhaCopia = copiarPilha(pilhaOriginal);
+
+    // Exibe os elementos da pilha original
+    cout << "\nPilha Original: ";
+    while (!pilhaOriginal.empty()) {
+        cout << pilhaOriginal.top() << " ";
+        pilhaOriginal.pop();
+    }
+
+    // Exibe os elementos da pilha cópia
+    cout << "\nPilha Cópia: ";
+    while (!pilhaCopia.empty()) {
+        cout << pilhaCopia.top() << " ";
+        pilhaCopia.pop();
+    }
+
+    cout << endl;
+
+    return 0;
+}
+
+
+
+outra alternativa:
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+// Função para copiar uma pilha
+stack<int> copiarPilha(const stack<int>& original) {
+    stack<int> copia = original;
+    return copia;
+}
+
+int main() {
+    stack<int> pilhaOriginal;
+
+    // Insira alguns números na pilha original
+    cout << "Digite números inteiros para a pilha original (digite 0 para encerrar):\n";
+    int num;
+    do {
+        cin >> num;
+        if (num != 0) {
+            pilhaOriginal.push(num);
+        }
+    } while (num != 0);
+
+    // Chama a função para copiar a pilha
+    stack<int> pilhaCopia = copiarPilha(pilhaOriginal);
+
+    // Exibe os elementos da pilha original
+    cout << "\nPilha Original: ";
+    while (!pilhaOriginal.empty()) {
+        cout << pilhaOriginal.top() << " ";
+        pilhaOriginal.pop();
+    }
+
+    // Insira manualmente os elementos na pilha copiada
+    cout << "\n\nDigite números inteiros para a pilha cópia (digite 0 para encerrar):\n";
+    do {
+        cin >> num;
+        if (num != 0) {
+            pilhaCopia.push(num);
+        }
+    } while (num != 0);
+
+    // Exibe os elementos da pilha cópia
+    cout << "\nPilha Cópia: ";
+    while (!pilhaCopia.empty()) {
+        cout << pilhaCopia.top() << " ";
+        pilhaCopia.pop();
+    }
+
+    cout << endl;
+
+    return 0;
+}

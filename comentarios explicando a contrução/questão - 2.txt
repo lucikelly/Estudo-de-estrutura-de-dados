@@ -1,0 +1,37 @@
+//questão 02 da lista
+
+#include <iostream>
+#include <cmath> // importei para o usar o sqrt pra pegar a 
+	raiz quadrada da multiplicação dos pontos 
+using namespace std;
+struct Ponto {
+    double x;
+    double y;
+
+};
+double distanciaOrigem(const Ponto& ponto) {
+    return sqrt(ponto.x * ponto.x + ponto.y * ponto.y);
+}
+// função para retornar a distância, veja bem: (3*3 = 9)+(4*4=16) = 25,  
+daqui precisamos saber a raiz quadrada de 25 que é igual a 5 que também 
+é a distância entre as cordenadas mencionadas e o ponto de origem.
+
+int main(){
+    
+    //usuário digita as cordenadas
+    Ponto condenadas; 
+    cout << "Digite a coordenada x:  ";
+    cin >> condenadas.x;
+    cout << "Digite a coordenada y: ";
+    cin >> condenadas.y;
+ 
+    double distancia = distanciaOrigem(condenadas); 
+	//função distanciaOrigem recebendo o valor das 
+	cordenadas e retornado a distância calculada na 
+	funcão para a variável distancia.
+    
+    cout << "A distância do ponto (" << condenadas.x << ", " << condenadas.y
+              << ") até a origem é: " << distancia << endl;
+
+    return 0;
+}

@@ -1,0 +1,37 @@
+
+//questão 01 das lista
+
+//Basicamente quando trabalhamos com grande fluxo de dados, 
+usamos arrays para deixa o código mais limpo, porém, arrays 
+apenas levam tipos iguais(int, char e etc..), dito isso, as 
+structs servem para agrupar vários tipo de dados, sejam eles int, 
+string, por ai vai. Aqui a gente vai trabalhar com a criação do 
+proprio tipo dado, exemplo: "cadastro" é considerado um tipo de 
+dados de pessoa, com atributos nele, como: nome e id (também 
+nomeados membros).
+
+#include <iostream>
+using namespace std;
+struct Cadastro {
+    string name; // isso é membro da struct
+    int id; // isso é membro da struct
+    
+};
+
+int main(){
+    Cadastro pessoa = {"Marcos", 1}; // criamos "pessoa" do cadastro para 
+					receber os valores dos membros
+    cout << "Primeira pessoa: "<<endl;
+    cout << "Nome: "<<pessoa.name<< endl;  // usamos a refência "pessoa" o ponto 
+						e o nome do membro para chama-lo.
+    cout << "ID: "<<pessoa.id<< endl;
+
+    
+    //criando outra pessoa
+    cout << "Segunda pessoa: "<<endl;
+    Cadastro pessoa01 = {"Ana", 2}; 
+    cout << "Nome: "<<pessoa01.name<< endl; 
+    cout << "ID: "<<pessoa01.id<< endl;
+
+    return 0;
+}
